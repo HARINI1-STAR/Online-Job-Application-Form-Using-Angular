@@ -1,0 +1,211 @@
+<div class="container">
+
+    <h2>Online Job Application</h2>
+
+    <p class="mandatory-note">
+        <span class="star">*</span> indicates mandatory fields
+    </p>
+
+    <form #jobForm="ngForm" (ngSubmit)="submitForm(jobForm)">
+
+        <!-- Personal Details -->
+
+        <h3>Personal Details</h3>
+
+        <label>Full Name <span class="star">*</span></label>
+
+        <input type="text" name="name" [(ngModel)]="applicant.name" required #name="ngModel"
+            [class.invalid]="name.invalid && name.touched">
+
+        <div class="error" *ngIf="name.invalid && name.touched">
+            Name is required
+        </div>
+
+
+        <label>Email <span class="star">*</span></label>
+
+        <input type="text" name="email" [(ngModel)]="applicant.email" required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #email="ngModel"
+            [class.invalid]="email.invalid && email.touched">
+
+        <div class="error" *ngIf="email.errors?.['required'] && email.touched">
+            Email is required
+        </div>
+
+        <div class="error" *ngIf="email.errors?.['pattern'] && email.touched">
+            Enter a valid email
+        </div>
+
+
+        <label>Phone Number <span class="star">*</span></label>
+
+        <input type="text" name="phone" [(ngModel)]="applicant.phone" pattern="[0-9]{10}" required #phone="ngModel"
+            [class.invalid]="phone.invalid && phone.touched">
+
+        <div class="error" *ngIf="phone.invalid && phone.touched">
+            Enter valid 10 digit phone number
+        </div>
+
+
+        <label>Address <span class="star">*</span></label>
+
+        <textarea name="address" [(ngModel)]="applicant.address" required></textarea>
+
+
+        <!-- Job Details -->
+
+        <h3>Job Details</h3>
+
+        <label>Position Applying For <span class="star">*</span></label>
+
+        <select name="position" [(ngModel)]="applicant.position" required>
+
+            <option value="">Select</option>
+
+            <option *ngFor="let p of positions">
+                {{p}}
+            </option>
+
+        </select>
+
+
+        <label>Preferred Location <span class="star">*</span></label>
+
+        <select name="location" [(ngModel)]="applicant.location" required>
+
+            <option value="">Select</option>
+
+            <option *ngFor="let l of locations">
+                {{l}}
+            </option>
+
+        </select>
+
+
+        <label>Expected Salary <span class="star">*</span></label>
+
+        <input type="number" name="salary" [(ngModel)]="applicant.salary" required>
+
+
+        <!-- Educational Qualification -->
+
+        <h3>Educational Qualification</h3>
+
+        <label>Highest Qualification <span class="star">*</span></label>
+
+        <select name="qualification" [(ngModel)]="applicant.qualification" required>
+
+            <option value="">Select</option>
+
+            <option *ngFor="let q of qualifications">
+                {{q}}
+            </option>
+
+        </select>
+
+
+        <label>University / College <span class="star">*</span></label>
+
+        <select name="university" [(ngModel)]="applicant.university" required>
+
+            <option value="">Select</option>
+
+            <option *ngFor="let u of universities">
+                {{u}}
+            </option>
+
+        </select>
+
+
+        <label>Year of Passing <span class="star">*</span></label>
+
+        <select name="year" [(ngModel)]="applicant.year" required>
+
+            <option value="">Select</option>
+
+            <option *ngFor="let y of years">
+                {{y}}
+            </option>
+
+        </select>
+
+
+        <!-- Skills -->
+
+        <h3>Skills <span class="star">*</span></h3>
+
+        <div class="checkbox-group" *ngFor="let skill of skillsList">
+
+            <label>
+
+                <input type="checkbox" [value]="skill" (change)="onSkillChange($event)">
+
+                {{skill}}
+
+            </label>
+
+        </div>
+
+
+        <!-- Experience -->
+
+        <h3>Experience <span class="star">*</span></h3>
+
+        <label class="radio-group">
+
+            <input type="radio" name="exp" value="Fresher" [(ngModel)]="applicant.exp">
+
+            Fresher
+
+        </label>
+
+        <label class="radio-group">
+
+            <input type="radio" name="exp" value="Experienced" [(ngModel)]="applicant.exp">
+
+            Experienced
+
+        </label>
+
+
+        <div *ngIf="applicant.exp==='Experienced'">
+
+            <label>Years of Experience</label>
+
+            <input type="number" name="yearsExp" [(ngModel)]="applicant.yearsExp">
+
+        </div>
+
+
+        <!-- Resume Upload -->
+
+        <h3>Upload Resume</h3>
+
+        <input type="file">
+
+
+        <!-- Declaration -->
+
+        <div class="agree">
+
+            <input type="checkbox" name="agree" [(ngModel)]="applicant.agree" required #agree="ngModel">
+
+            <span>
+                I confirm the above information is correct
+                <span class="star">*</span>
+            </span>
+
+        </div>
+
+        <div class="error" *ngIf="agree.invalid && agree.touched">
+            You must accept before submitting
+        </div>
+
+
+        <button type="submit" [disabled]="jobForm.invalid">
+            Submit Application
+        </button>
+
+    </form>
+
+</div>

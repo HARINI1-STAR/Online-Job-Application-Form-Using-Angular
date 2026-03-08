@@ -1,0 +1,84 @@
+.container {
+    width: 500px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #007BFF;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0 15px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #007BFF;
+    color: white;
+    border: none;
+}
+
+button:disabled {
+    background: gray;
+}
+
+.checkbox-group label,
+.radio-group {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+    text-align: left;
+    width: fit-content;
+
+}
+
+.star {
+    color: red;
+    font-weight: bold;
+}
+
+.mandatory-note {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.invalid {
+    border: 2px solid red;
+}
+
+.agree {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 10px;
+}
